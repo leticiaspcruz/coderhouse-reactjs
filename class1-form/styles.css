@@ -1,0 +1,15 @@
+#form-fields{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+#form-fields input, #form-fields button {
+  margin: 5px 0;
+}
+
+.title {
+  color: purple;
+  text-align: center;
+  font-size: 24px;
+}
