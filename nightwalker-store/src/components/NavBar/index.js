@@ -9,6 +9,15 @@ import {
 import logoImage from '../../assets/logo.png';
 
 const NavBar = () => {
+
+  const items = [
+    {text: "sobre a loja", href: '/about', activeStyle: true},
+    {text: "promoções", href: '/sale', activeStyle: true}, 
+    {text: "camisetas", href: '/tshirts', activeStyle: true},
+    {text: "acessórios", href: '/acessories', activeStyle: true},
+    {text: "contato", href: '/contact', activeStyle: true}  
+  ];
+
   return (
     <>
       <Nav>
@@ -17,21 +26,13 @@ const NavBar = () => {
         </NavItem>
         <MobileNavIcon />
         <NavMenu>
-          <NavItem to='/about' activeStyle>
-            sobre a loja
-          </NavItem>
-          <NavItem to='/sale' activeStyle>
-            promoções
-          </NavItem>
-          <NavItem to='/tshirts' activeStyle>
-            camisetas
-          </NavItem>
-          <NavItem to='/acessories' activeStyle>
-            acessórios
-          </NavItem>
-          <NavItem to='/contact' activeStyle>
-            contato
-          </NavItem>
+        {items.map((item) => (
+          <NavItem 
+            to={item.href}
+            activeStyle={item.activeStyle}
+          >
+            {item.text}
+          </NavItem>))}
         </NavMenu>
       </Nav>
     </>
