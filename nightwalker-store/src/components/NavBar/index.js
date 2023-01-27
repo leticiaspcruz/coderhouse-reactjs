@@ -4,7 +4,8 @@ import {
   NavItem,
   MobileNavIcon,
   NavMenu,
-  Logo
+  Logo,
+  CartWidget,
 } from './styles';
 import logoImage from '../../assets/logo.png';
 
@@ -15,7 +16,8 @@ const NavBar = () => {
     {text: "promoções", href: '/sale', activeStyle: true}, 
     {text: "camisetas", href: '/tshirts', activeStyle: true},
     {text: "acessórios", href: '/acessories', activeStyle: true},
-    {text: "contato", href: '/contact', activeStyle: true}  
+    {text: "contato", href: '/contact', activeStyle: true},
+    {text: "", href: '/cart', activeStyle: true, icon: <CartWidget />}    
   ];
 
   return (
@@ -32,6 +34,7 @@ const NavBar = () => {
             activeStyle={item.activeStyle}
           >
             {item.text}
+            {item.icon}
           </NavItem>))}
         </NavMenu>
       </Nav>

@@ -1,6 +1,7 @@
 import { FaBars } from 'react-icons/fa';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 export const Nav = styled.nav`
   background: #000;
@@ -54,4 +55,8 @@ export const NavMenu = styled.div`
 
 export const Logo = styled.img`
   width: 120px;
+`;
+
+export const CartWidget = styled(AiOutlineShoppingCart)`
+  color: 'white';
 `;
