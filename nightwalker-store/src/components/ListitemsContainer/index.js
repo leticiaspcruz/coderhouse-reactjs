@@ -1,20 +1,15 @@
 import React from "react";
-import { productsCategory } from "../../constants";
-import { ItemCount } from '../ItemCount';
+import { PRODUCTS } from "../../constants";
+import{ ItemList } from '../ItemList';
 import {} from './styles';
 
 const ListItemsContainer = () => {
   return (
     <>
       <div>
-        <h1>principais categorias</h1>
-        {productsCategory.map((item) => (
-          <div>
-            <p>{item.category}</p>
-          </div> 
-        ))}
+        <h1>conheça nossos produtos</h1>
       </div>
-      <ItemCount stock={5} initial={1} />
+      <ItemList items={PRODUCTS}/>
     </>
   );
 };
