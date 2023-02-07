@@ -1,5 +1,6 @@
 export const PRODUCTS = [
   {
+    id: '1',
     title: 'camiseta',
     price: 'R$70',
     pictureUrl: '',
@@ -11,6 +12,7 @@ export const PRODUCTS = [
 
   },
   {
+    id: '2',
     title: 'calça',
     price: 'R$100',
     pictureUrl: '',
@@ -21,6 +23,7 @@ export const PRODUCTS = [
     stock: 10, 
   },
   {
+    id: '3',
     title: 'boné',
     price: 'R$50',
     pictureUrl: '',
