@@ -12,11 +12,8 @@ import logoImage from '../../assets/logo.png';
 const NavBar = () => {
 
   const items = [
-    {text: "sobre a loja", href: '/about', activeStyle: true},
-    {text: "promoções", href: '/sale', activeStyle: true}, 
-    {text: "camisetas", href: '/tshirts', activeStyle: true},
-    {text: "acessórios", href: '/acessories', activeStyle: true},
-    {text: "contato", href: '/contact', activeStyle: true},
+    {text: "categorias", href: '/category', activeStyle: true}, 
+    {text: "produtos", href: '/product', activeStyle: true},
     {text: "", href: '/cart', activeStyle: true, icon: <CartWidget />}    
   ];
 

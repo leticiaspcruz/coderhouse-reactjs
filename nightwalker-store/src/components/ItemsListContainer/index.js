@@ -3,7 +3,7 @@ import { PRODUCTS } from "../../constants";
 import{ ItemList } from '../ItemList';
 import {} from './styles';
 
-const ListItemsContainer = () => {
+const ItemsListContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [productData, setProductData] = useState([]);
 
@@ -39,4 +39,4 @@ const ListItemsContainer = () => {
   );
 };
 
-export default ListItemsContainer;
+export default ItemsListContainer;

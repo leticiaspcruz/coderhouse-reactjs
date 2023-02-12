@@ -1,16 +1,22 @@
 import React from "react";
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import ListItemsContainer from './components/ListitemsContainer';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home, Category, ProductDetail, Cart, NotFound, Checkout } from './pages';
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <ListItemsContainer />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path={'/'} element={<Home />}/>
+        <Route exact path={'/category/:categoryId'} element={<Category />}/>
+        <Route  
+          exact path={'/product/:productId'} 
+          element={<ProductDetail />}/>
+        <Route exact path={'/cart'} element={<Cart />}/>
+        <Route exact path={'/checkout'} element={<Checkout />}/>
+        <Route exact path={'/*'} element={<NotFound />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
