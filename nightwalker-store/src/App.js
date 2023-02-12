@@ -17,12 +17,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path={'/'} element={<Home />}/>
-        <Route exact path={'/category'} element={<Category />}/>
+        <Route exact path={'/category'} element={<Categories />}/>
         <Route exact path={'/products'} element={<Products />}/>
         <Route 
           exact 
-          path={'/category/:categoryId'} 
-          element={<Categories />}/>
+          path={'/category/:categoryName'} 
+          element={<Category />}/>
         <Route  
           exact path={'/product/:productId'} 
           element={<ProductDetail />}/>

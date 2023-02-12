@@ -1,6 +1,7 @@
 import React from "react";
 import { ItemsListContainer, NavBar } from '../components';
 
+
 const Categories = () => {
 
   return (

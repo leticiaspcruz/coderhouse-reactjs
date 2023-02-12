@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { PRODUCTS } from "../../constants";
 import { useLocation } from 'react-router-dom';
-import{ ItemList } from '../ItemList';
+import{ ItemList } from '../../components';
 import {} from './styles';
 
-const ItemsListContainer = ({ categoryId }) => {
+const ItemsListContainer = ({ categoryName }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [productData, setProductData] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
@@ -36,12 +36,11 @@ const ItemsListContainer = ({ categoryId }) => {
     item.category
   ));
 
-
   useEffect(() => {
-    if(categoryId || location.pathname === '/category') { 
+    if(categoryName || location.pathname === '/category') { 
       setShowCategories(true) 
     };
-  }, [categoryId, location.pathname]);
+  }, [categoryName, location.pathname]);
 
 
   const CategoryItems = () => {
@@ -53,7 +52,7 @@ const ItemsListContainer = ({ categoryId }) => {
   const ListItems = () => {
     if(showCategories) {
       return <CategoryItems />
-    }
+    } 
     else {
       return <ItemList items={productData}/>
     }
