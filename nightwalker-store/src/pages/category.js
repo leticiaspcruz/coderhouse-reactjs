@@ -36,7 +36,6 @@ useEffect(() => {
   setIsLoading(true)
 }, []);
 
-console.log(categoryItem)
   return (
     <>
      <NavBar />
@@ -46,7 +45,7 @@ console.log(categoryItem)
       ? ((
         <div>
           <h1>categoria {categoryName}</h1>
-          <Item item={categoryItem[0]}/>
+            <Item item={categoryItem[0]}/>
         </div>
         )) 
       : null}

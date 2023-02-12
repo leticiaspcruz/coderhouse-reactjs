@@ -6,7 +6,7 @@ const Products = () => {
   return (
     <>
      <NavBar />
-     <h1>principais produtos</h1>
+     <h1>nossos produtos</h1>
      <ItemsListContainer />
     </>
   );

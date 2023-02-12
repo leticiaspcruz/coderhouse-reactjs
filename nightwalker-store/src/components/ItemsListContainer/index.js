@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PRODUCTS } from "../../constants";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import{ ItemList } from '../../components';
 import {} from './styles';
 
@@ -45,7 +45,9 @@ const ItemsListContainer = ({ categoryName }) => {
 
   const CategoryItems = () => {
     return categories.map((category) => 
-        <p>{category}</p>
+        <Link to={`/category/${category}`}>
+          <p>{category}</p>
+        </Link>
       )
   };  
 

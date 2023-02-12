@@ -1,8 +1,8 @@
-export { default as Home } from './home';
-export { default as Category } from './category';
-export { default as Categories } from './categories';
-export { default as Products } from './products';
-export { default as ProductDetail } from './productDetail';
-export { default as NotFound } from './notFound';
-export { default as Cart} from './cart';
-export { default as Checkout} from './checkout';
+export { default as Home } from './Home';
+export { default as Category } from './Category';
+export { default as Categories } from './Categories';
+export { default as Products } from './Products';
+export { default as ProductDetail } from './ProductDetail';
+export { default as NotFound } from './NotFound';
+export { default as Cart} from './Cart';
+export { default as Checkout} from './Checkout';
