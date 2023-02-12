@@ -13,7 +13,7 @@ const NavBar = () => {
 
   const items = [
     {text: "categorias", href: '/category', activeStyle: true}, 
-    {text: "produtos", href: '/product', activeStyle: true},
+    {text: "produtos", href: '/products', activeStyle: true},
     {text: "", href: '/cart', activeStyle: true, icon: <CartWidget />}    
   ];
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import {} from './styles';
 
 export const Item = ({ item }) => {
@@ -8,9 +10,9 @@ export const Item = ({ item }) => {
       <img src={item.pictureUrl} alt={item.imgAlt}/>
       <p>{item.price}</p>
       <p>{item.category}</p>
-      <button onclick={console.log(item.productDetail)}>
+      <Link to={`/product/${item.id}`}>
         Ver detalhe do produto
-      </button>
+      </Link>
       <p>Estoque disponível: {item.stock}</p>
     </div>
   );

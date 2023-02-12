@@ -22,8 +22,6 @@ const ItemDetailContainer = (productId ) => {
       });
   };
 
-  console.log(productDetail)
-
   useEffect(() => {
     getProduct().then( response => {
       setProductDetail(response);

@@ -9,7 +9,7 @@ const Category = () => {
     <>
      <NavBar />
      <h1>Category {categoryId}</h1>
-     <ItemsListContainer />
+     <ItemsListContainer categoryId={categoryId}/>
     </>
   );
 };
