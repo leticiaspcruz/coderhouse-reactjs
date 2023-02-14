@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemsListContainer, NavBar } from '../components';
+import { ItemsListContainer, NavBar, Banner } from '../components';
 
 
 const Categories = () => {
@@ -7,8 +7,8 @@ const Categories = () => {
   return (
     <>
      <NavBar />
-     <h1>principais categorias</h1>
-     <ItemsListContainer />
+     <Banner />
+     <ItemsListContainer title={'principais categorias'}/>
     </>
   );
 };

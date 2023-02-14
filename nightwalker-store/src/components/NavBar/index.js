@@ -12,6 +12,7 @@ import logoImage from '../../assets/logo.png';
 const NavBar = () => {
 
   const items = [
+    {text: "início", href: '/', activeStyle: true}, 
     {text: "categorias", href: '/category', activeStyle: true}, 
     {text: "produtos", href: '/products', activeStyle: true},
     {text: "", href: '/cart', activeStyle: true, icon: <CartWidget />}    

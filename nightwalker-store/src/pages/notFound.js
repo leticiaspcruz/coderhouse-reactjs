@@ -5,7 +5,7 @@ const NotFound = () => {
   return (
     <>
      <NavBar />
-     <h1>Erro</h1>
+     <h1>Ops! Essa página não existe.</h1>
     </>
   );
 };

@@ -1,9 +1,13 @@
+import tshirtImage from './assets/tshirt-mockup2.jpeg';
+import jeansImage from './assets/jeans-mockup.jpeg';
+import capImage from './assets/cap-mockup.jpg';
+
 export const PRODUCTS = [
   {
     id: '1',
     title: 'camiseta',
     price: 'R$70',
-    pictureUrl: '',
+    pictureUrl: tshirtImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de uma camiseta',
@@ -15,7 +19,7 @@ export const PRODUCTS = [
     id: '2',
     title: 'calça',
     price: 'R$100',
-    pictureUrl: '',
+    pictureUrl: jeansImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de uma calça',
@@ -26,7 +30,7 @@ export const PRODUCTS = [
     id: '3',
     title: 'boné',
     price: 'R$50',
-    pictureUrl: '',
+    pictureUrl: capImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de um boné',

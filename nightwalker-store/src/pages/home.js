@@ -1,12 +1,12 @@
 import React from "react";
-import { NavBar, ItemsListContainer } from '../components';
+import { NavBar, ItemsListContainer, Banner } from '../components';
 
 const Home = () => {
   return (
     <>
      <NavBar />
-     <h1>Home</h1>
-     <ItemsListContainer />
+     <Banner />
+     <ItemsListContainer title={'nossos destaques'}/>
     </>
   );
 };

@@ -1,20 +1,21 @@
 import React from 'react';
 import { Item } from '../Item';
 import { ItemCount } from '../ItemCount';
-import {} from './styles';
+import { Container, Content } from './styles';
 
-export const ItemList = ({ items }) => {
+export const ItemList = ({ items, title }) => {
   if (items.length < 0) return null;
 
   return (
-    <div>
+    <Container>
+      <h1>{title}</h1>      
       {items.map((item) => (
-           <li key={item.id}>
+           <Content key={item.id}>
             <Item item={item}/>
             <ItemCount stock={item.stock} initial={1} />
-           </li>
+           </Content>
           ))}
-    </div>
+    </Container>
   );
 };
 

@@ -4,7 +4,7 @@ import { useLocation, Link } from 'react-router-dom';
 import{ ItemList } from '../../components';
 import {} from './styles';
 
-const ItemsListContainer = ({ categoryName }) => {
+const ItemsListContainer = ({ categoryName, title }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [productData, setProductData] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
@@ -56,7 +56,7 @@ const ItemsListContainer = ({ categoryName }) => {
       return <CategoryItems />
     } 
     else {
-      return <ItemList items={productData}/>
+      return <ItemList items={productData} title={title}/>
     }
   };
 

@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 export const Nav = styled.nav`
-  background: #000;
+  background: 
+    linear-gradient(to right, #000000, #0a0a0a, #121212, #181818, #1d1d1d);  
   height: 80px;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 5rem;
   z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
 `;
 
 export const NavItem = styled(Link)`

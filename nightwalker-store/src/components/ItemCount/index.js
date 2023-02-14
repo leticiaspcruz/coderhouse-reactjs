@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiOutlineMinusCircle } from "react-icons/ai";
-import { ItemCounterContainer } from './styles';
+import { ItemCounterContainer, Button, CounterButton } from './styles';
 
 export const ItemCount = ({ stock, initial= 1 }) => {
   const [count, setCount] = useState(initial);
@@ -23,20 +23,19 @@ export const ItemCount = ({ stock, initial= 1 }) => {
   return (
     <div>
       <div>
-        <h1>contador</h1>
         <ItemCounterContainer>
-        <button onClick={() => removeItem()}>
+        <CounterButton onClick={() => removeItem()}>
           < AiOutlineMinusCircle />
-        </button>
+        </CounterButton>
         <p>{count}</p>
-        <button onClick={() => handleStock()}>
+        <CounterButton onClick={() => handleStock()}>
           <IoMdAddCircleOutline />
-        </button>
+        </CounterButton>
         </ItemCounterContainer>
       </div>
-      <button onClick={() => console.log('adicionou no carrinho')}>
+      <Button onClick={() => console.log('adicionou no carrinho')}>
           adicionar ao carrinho
-        </button>
+        </Button>
     </div>
   );
 };

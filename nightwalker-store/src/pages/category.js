@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { NavBar, Item } from '../components';
+import { NavBar, Banner, Item } from '../components';
 import { PRODUCTS } from "../constants";
 
 const Category = () => {
@@ -39,6 +39,7 @@ useEffect(() => {
   return (
     <>
      <NavBar />
+     <Banner />
      {isLoading 
       ? (<h1>carregando...</h1>) 
       : categoryItem.length > 0 
