@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { NavBar, Banner, Item } from '../components';
+import { NavBar, Banner, Item, Loader } from '../components';
 import { PRODUCTS } from "../constants";
+import { Container } from "./styles";
 
 const Category = () => {
   const {categoryName}  = useParams();
@@ -41,13 +42,13 @@ useEffect(() => {
      <NavBar />
      <Banner />
      {isLoading 
-      ? (<h1>carregando...</h1>) 
+      ? (<Loader />) 
       : categoryItem.length > 0 
       ? ((
-        <div>
-          <h1>categoria {categoryName}</h1>
+        <Container>
+          <h1>categoria: {categoryName}</h1>
             <Item item={categoryItem[0]}/>
-        </div>
+        </Container>
         )) 
       : null}
     </>

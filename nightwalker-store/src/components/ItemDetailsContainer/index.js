@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PRODUCTS } from "../../constants";
 import{ ItemDetail } from '../ItemDetail';
+import { Loader } from '../../components';
 import {} from './styles';
 
 const ItemDetailContainer = (productId ) => {
@@ -36,7 +37,7 @@ const ItemDetailContainer = (productId ) => {
   return (
     <>
       {isLoading 
-        ? (<h1>carregando...</h1>) 
+        ? (<Loader />) 
         : productDetail.length > 0 
         ? <ItemDetail item={productDetail[0]}/> 
         : (<p>Não encontramos este produto</p>)

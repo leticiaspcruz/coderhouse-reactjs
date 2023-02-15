@@ -7,7 +7,6 @@ const Categories = () => {
   return (
     <>
      <NavBar />
-     <Banner />
      <ItemsListContainer title={'principais categorias'}/>
     </>
   );

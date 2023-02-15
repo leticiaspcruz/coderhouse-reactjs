@@ -6,7 +6,7 @@ export const Container = styled.div`
     flex: 1;
     align-items: flex-end;
     width: 100%;
-    height: 600px;
+    height: 400px;
     background: url(${bannerImage});
     background-size: cover;
     background-position: center;
@@ -14,5 +14,6 @@ export const Container = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: 50%;
+  width: 40%;
+  margin: 0px 12px;
 `;

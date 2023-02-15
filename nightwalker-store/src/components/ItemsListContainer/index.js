@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { PRODUCTS } from "../../constants";
-import { useLocation, Link } from 'react-router-dom';
-import{ ItemList } from '../../components';
-import {} from './styles';
+import { useLocation } from 'react-router-dom';
+import{ ItemList, Loader } from '../../components';
+import { Container, Wrapper, CategoryLink, Title, Text } from './styles';
 
 const ItemsListContainer = ({ categoryName, title }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,13 +43,20 @@ const ItemsListContainer = ({ categoryName, title }) => {
   }, [categoryName, location.pathname]);
 
 
-  const CategoryItems = () => {
-    return categories.map((category) => 
-        <Link to={`/category/${category}`}>
-          <p>{category}</p>
-        </Link>
-      )
-  };  
+  const CategoryItems = () => 
+      (<>
+        <Container>
+        <Title>nossas categorias:</Title>
+          <Wrapper>
+            {categories.map((category) => 
+              <CategoryLink to={`/category/${category}`}>
+                <Text>{category}</Text>
+              </CategoryLink> 
+            )}
+          </Wrapper>
+      </Container>
+      </>
+  );  
 
   const ListItems = () => {
     if(showCategories) {
@@ -63,7 +70,7 @@ const ItemsListContainer = ({ categoryName, title }) => {
   return (
     <>
       {isLoading 
-      ? (<h1>carregando...</h1>) 
+      ? (<Loader />) 
       :  (<ListItems/>)
       }
     </>

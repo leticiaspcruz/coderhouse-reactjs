@@ -1,12 +1,12 @@
 import React from "react";
-import { NavBar } from '../components';
+import { NavBar, ErrorMessage } from '../components';
 
 const NotFound = () => {
   return (
     <>
      <NavBar />
-     <h1>Ops! Essa página não existe.</h1>
-    </>
+     <ErrorMessage />
+  </>
   );
 };
 
