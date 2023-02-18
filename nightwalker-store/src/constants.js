@@ -13,6 +13,7 @@ export const PRODUCTS = [
     imgAlt: 'Imagem de uma camiseta',
     category: 'camisetas',
     stock: 5, 
+    quantity: 0,
 
   },
   {
@@ -25,6 +26,7 @@ export const PRODUCTS = [
     imgAlt: 'Imagem de uma calça',
     category: 'calças', 
     stock: 10, 
+    quantity: 0,
   },
   {
     id: '3',
@@ -36,5 +38,6 @@ export const PRODUCTS = [
     imgAlt: 'Imagem de um boné',
     category: 'acessórios', 
     stock: 2, 
+    quantity: 0,
   },
 ];

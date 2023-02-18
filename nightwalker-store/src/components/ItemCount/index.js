@@ -3,20 +3,23 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { ItemCounterContainer, Button, CounterButton } from './styles';
 
-export const ItemCount = ({ stock, initial= 1 }) => {
+export const ItemCount = ({ stock, initial= 1, onAdd }) => {
   const [count, setCount] = useState(initial);
-  const handleStock = () => {
-    setCount(count + 1);
-    if(count >= stock) {
-      setCount(initial);
-      return alert(`O estoque disponível é de ${stock}`);
+  const handleIncrement = () => {
+    if (count < stock) {
+      setCount(count + 1);
     }
-  }
-  const removeItem = () => {
-    setCount(count - 1);
-    if(count === 0) {
-      setCount(count)
-      return alert('Item removido')
+  };
+
+  const handleDecrement = () => {
+    if (count > initial) {
+      setCount(count - 1);
+    }
+  };
+
+  const handleAdd = () => {
+    if (onAdd) {
+      onAdd(count);
     }
   };
 
@@ -24,16 +27,16 @@ export const ItemCount = ({ stock, initial= 1 }) => {
     <div>
       <div>
         <ItemCounterContainer>
-        <CounterButton onClick={() => removeItem()}>
+        <CounterButton onClick={() => handleDecrement()}>
           < AiOutlineMinusCircle />
         </CounterButton>
         <p>{count}</p>
-        <CounterButton onClick={() => handleStock()}>
+        <CounterButton onClick={() => handleIncrement()}>
           <IoMdAddCircleOutline />
         </CounterButton>
         </ItemCounterContainer>
       </div>
-      <Button onClick={() => console.log('adicionou no carrinho')}>
+      <Button onClick={handleAdd}>
           adicionar ao carrinho
         </Button>
     </div>

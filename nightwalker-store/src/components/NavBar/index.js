@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Nav,
   NavItem,
@@ -8,14 +8,22 @@ import {
   CartWidget,
 } from './styles';
 import logoImage from '../../assets/logo.png';
+import { CartContext } from '../../context/CartProvider';
 
 const NavBar = () => {
+  const { totalItems } = useContext(CartContext);
 
   const items = [
     {text: "início", href: '/', activeStyle: true}, 
     {text: "categorias", href: '/category', activeStyle: true}, 
     {text: "produtos", href: '/products', activeStyle: true},
-    {text: "", href: '/cart', activeStyle: true, icon: <CartWidget />}    
+    {
+      text: "", 
+      href: '/cart',
+      activeStyle: true, 
+      total: "" || totalItems,
+      icon: <CartWidget />, 
+    }    
   ];
 
   return (
@@ -33,6 +41,7 @@ const NavBar = () => {
           >
             {item.text}
             {item.icon}
+            {item.total}
           </NavItem>))}
         </NavMenu>
       </Nav>
