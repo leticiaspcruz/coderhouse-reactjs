@@ -18,6 +18,10 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  const isInCart = (productId) => {
+    return cartItems.some((item) => item.id === productId);
+  };
+
   const totalItems = cartItems.length;
 
   console.log('carrinho', cartItems);
@@ -27,6 +31,7 @@ export const CartProvider = ({ children }) => {
       addToCart, 
       removeItem, 
       clearCart,
+      isInCart,
       totalItems, 
     }}>
       {children}
