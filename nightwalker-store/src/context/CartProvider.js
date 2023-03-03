@@ -24,7 +24,6 @@ export const CartProvider = ({ children }) => {
 
   const totalItems = cartItems.length;
 
-  console.log('carrinho', cartItems);
   return (
     <CartContext.Provider value={{ 
       cartItems, 
