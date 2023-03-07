@@ -9,7 +9,7 @@ export const Item = ({ item }) => {
         <ImageWrapper>
           <ProductImage src={item.pictureUrl} alt={item.imgAlt}/>
         </ImageWrapper>
-        <p>a partir de {item.price}*</p>
+        <p>a partir de R${item.price}*</p>
         <p>categoria: {item.category}</p>
         <Link to={`/product/${item.id}`}>
           Ver detalhe do produto

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { PRODUCTS } from "../../constants";
 import { useLocation } from 'react-router-dom';
 import{ ItemList, Loader } from '../../components';
 import { Container, Wrapper, CategoryLink, Title, Text } from './styles';

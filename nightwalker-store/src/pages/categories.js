@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemsListContainer, NavBar, Banner } from '../components';
+import { ItemsListContainer, NavBar } from '../components';
 
 
 const Categories = () => {

@@ -1,41 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NavBar, Banner, Item, Loader } from '../components';
-import { PRODUCTS } from "../constants";
 import { Container } from "./styles";
+import { getFirestore, getDocs, collection } from 'firebase/firestore';
 
 const Category = () => {
   const {categoryName}  = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState([]);
 
-  const getProductData = (onSuccess = true) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (onSuccess) {
-          resolve(PRODUCTS);
-        }
-        reject("Ops! Tivemos um problema");
-      }, 3000);
-    });
-};
+  const getItemsFromFireStore = () => {
+    getDocs(collection(getFirestore(), "items"))
+    .then((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((item) => items.push({
+          id: item.id,
+          ...item.data(),
+        }));
+      return items;
+    })
+    .then(data => {
+      setProductData(data);
+      setIsLoading(false);
+    })
+    .catch((error) => console.error(error))
+  };
+
+  useEffect(() => {
+    getItemsFromFireStore()
+  }, []);
 
 const categoryItem = productData.filter((product) => {
   if (product.category === categoryName) { 
     return product
   }
 });
-
-useEffect(() => {
-  getProductData().then( response => {
-    setProductData(response);
-  }).catch(error => {
-    console.error(error);
-  }).finally(() => {
-    setIsLoading(false)
-  })
-  setIsLoading(true)
-}, []);
 
   return (
     <>
