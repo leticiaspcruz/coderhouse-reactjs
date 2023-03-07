@@ -6,38 +6,34 @@ export const PRODUCTS = [
   {
     id: '1',
     title: 'camiseta',
-    price: 'R$70',
+    price: 70,
     pictureUrl: tshirtImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de uma camiseta',
     category: 'camisetas',
     stock: 5, 
-    quantity: 0,
-
   },
   {
     id: '2',
     title: 'calça',
-    price: 'R$100',
+    price: 100,
     pictureUrl: jeansImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de uma calça',
     category: 'calças', 
     stock: 10, 
-    quantity: 0,
   },
   {
     id: '3',
     title: 'boné',
-    price: 'R$50',
+    price: 50,
     pictureUrl: capImage,
     productDetail: 
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
     imgAlt: 'Imagem de um boné',
     category: 'acessórios', 
-    stock: 2, 
-    quantity: 0,
+    stock: 0, 
   },
 ];

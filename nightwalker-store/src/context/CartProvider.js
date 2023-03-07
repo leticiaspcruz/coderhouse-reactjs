@@ -4,18 +4,22 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const addToCart = (item) => {
     setCartItems([...cartItems, item]);
+    setTotalPrice(totalPrice + item.price);
   };
 
   const removeItem = (item) => {
     const filteredItems = cartItems.filter((i) => i.id !== item.id);
     setCartItems(filteredItems);
+    setTotalPrice(totalPrice - item.price);
   };
 
   const clearCart = () => {
     setCartItems([]);
+    setTotalPrice(0);
   };
 
   const isInCart = (productId) => {
@@ -32,6 +36,7 @@ export const CartProvider = ({ children }) => {
       clearCart,
       isInCart,
       totalItems, 
+      totalPrice,
     }}>
       {children}
     </CartContext.Provider>

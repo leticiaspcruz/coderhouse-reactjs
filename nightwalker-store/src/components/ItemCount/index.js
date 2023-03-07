@@ -5,6 +5,7 @@ import { ItemCounterContainer, Button, CounterButton } from './styles';
 
 export const ItemCount = ({ stock, initial= 1, onAdd }) => {
   const [count, setCount] = useState(initial);
+
   const handleIncrement = () => {
     if (count < stock) {
       setCount(count + 1);
@@ -20,6 +21,7 @@ export const ItemCount = ({ stock, initial= 1, onAdd }) => {
   const handleAdd = () => {
     if (onAdd) {
       onAdd(count);
+      setCount(initial);
     }
   };
 

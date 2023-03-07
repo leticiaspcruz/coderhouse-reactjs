@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Nav,
   NavItem,
@@ -12,6 +12,13 @@ import { CartContext } from '../../context/CartProvider';
 
 const NavBar = () => {
   const { totalItems } = useContext(CartContext);
+  const [showCartProductsNumber, setShowCartProductsNumber] = useState(false);
+
+  useEffect(() => {
+    if (totalItems > 0) {
+      setShowCartProductsNumber(true)
+    }
+  }, [totalItems]);
 
   const items = [
     {text: "início", href: '/', activeStyle: true}, 
@@ -21,7 +28,7 @@ const NavBar = () => {
       text: "", 
       href: '/cart',
       activeStyle: true, 
-      total: "" || totalItems,
+      total: showCartProductsNumber ? totalItems : ' ',
       icon: <CartWidget />, 
     }    
   ];
