@@ -5,17 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCcTukZ8V6kAfmY6Ul45izwLgTMsS0zCyw",
+  apiKey: process.env.REACT_APP_FIRESTORE_API_KEY,
   authDomain: "nightwalker-store.firebaseapp.com",
   projectId: "nightwalker-store",
   storageBucket: "nightwalker-store.appspot.com",
   messagingSenderId: "702155068829",
-  appId: "1:702155068829:web:b1e86d5ee5ad6830a70b74",
+  appId: process.env.REACT_APP_FIRESTORE_APP_ID,
   measurementId: "G-T3872E6GHM"
 };
 
 initializeApp(firebaseConfig);
 
+console.log(process.env.REACT_APP_FIRESTORE_API_KEY)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

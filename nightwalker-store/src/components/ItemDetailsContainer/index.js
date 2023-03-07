@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { PRODUCTS } from "../../constants";
 import{ ItemDetail } from '../ItemDetail';
 import { Loader } from '../../components';
+import { getFirestore, getDocs, collection } from 'firebase/firestore';
 import {} from './styles';
 
 const ItemDetailContainer = (productId ) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
 
-  const filteredProduct = PRODUCTS.filter((product) => {
+  const getItemsFromFireStore = () => {
+    getDocs(collection(getFirestore(), "items"))
+    .then((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((item) => items.push({
+          id: item.id,
+          ...item.data(),
+        }));
+      return items;
+    })
+    .then(data => {
+      setProducts(data);
+      setIsLoading(false);
+    })
+    .catch((error) => console.error(error))
+  };
+
+  const filteredProduct = products.filter((product) => {
     if (product.id === productId.product) { 
       return product
     }
   });
 
-  const getProduct = () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(filteredProduct);
-          reject("Ops! Tivemos um problema");
-        }, 2000);
-      });
-  };
-
   useEffect(() => {
-    getProduct().then( response => {
-      setProductDetail(response);
-    }).catch(error => {
-      console.error(error);
-    }).finally(() => {
-      setIsLoading(false)
-    })
-    setIsLoading(true)
-  }, []);
+    getItemsFromFireStore();
+    if(filteredProduct) {
+      return setProductDetail(filteredProduct);
+    }
+  }, [filteredProduct]);
 
   return (
     <>

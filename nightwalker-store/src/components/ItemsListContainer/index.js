@@ -3,36 +3,37 @@ import { PRODUCTS } from "../../constants";
 import { useLocation } from 'react-router-dom';
 import{ ItemList, Loader } from '../../components';
 import { Container, Wrapper, CategoryLink, Title, Text } from './styles';
+import { getFirestore, getDocs, collection } from 'firebase/firestore';
 
 const ItemsListContainer = ({ categoryName, title }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
   const location = useLocation();
 
-  const getProductData = (onSuccess = true) => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (onSuccess) {
-            resolve(PRODUCTS);
-          }
-          reject("Ops! Tivemos um problema");
-        }, 3000);
-      });
+
+  const getItemsFromFireStore = () => {
+    getDocs(collection(getFirestore(), "items"))
+    .then((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((item) => items.push({
+          id: item.id,
+          ...item.data(),
+        }));
+      return items;
+    })
+    .then(data => {
+      setProductData(data);
+      setIsLoading(false);
+    })
+    .catch((error) => console.error(error))
   };
 
   useEffect(() => {
-    getProductData().then( response => {
-      setProductData(response);
-    }).catch(error => {
-      console.error(error);
-    }).finally(() => {
-      setIsLoading(false)
-    })
-    setIsLoading(true)
+    getItemsFromFireStore()
   }, []);
 
-  const categories =  productData.map((item) => (
+  const categories =  productData?.map((item) => (
     item.category
   ));
 
