@@ -28,6 +28,24 @@ export const CartProvider = ({ children }) => {
 
   const totalItems = cartItems.length;
 
+  const generateOrder = () => {
+    return {
+      buyer: {
+        name: "Leticia",
+        email: "teste@gmail.com",
+        phone: "(11)9999-9999",
+      },
+      item: cartItems.map(item => ({
+        title: item.title,
+        quantity: item.quantity,
+        price: item.price,
+        id: item.id,
+      })),
+      date: new Date(),
+      total: totalPrice,
+    }
+  };
+
   return (
     <CartContext.Provider value={{ 
       cartItems, 
@@ -37,6 +55,7 @@ export const CartProvider = ({ children }) => {
       isInCart,
       totalItems, 
       totalPrice,
+      generateOrder,
     }}>
       {children}
     </CartContext.Provider>

@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavBar } from '../components';
 import { CartContext } from '../context/CartProvider';
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 
 const Cart = () => {
-  const { cartItems, removeItem, clearCart, totalPrice } = useContext(CartContext);
+  const { cartItems, removeItem, clearCart, totalPrice, generateOrder } = useContext(CartContext);
 
   const handleRemoveItem = (item) => {
     removeItem(item);
@@ -12,6 +13,15 @@ const Cart = () => {
 
   const handleClearCart = () => {
     clearCart();
+  };
+
+  const sendOrder = () => {
+    const order = generateOrder();
+    const db = getFirestore();
+    const collectionRef = collection(db, "orders");
+    addDoc(collectionRef, order).then(({ id }) => {
+      alert('compra realizada com sucesso!'); clearCart();
+    }).catch((error) => console.error(error))
   };
 
 
@@ -31,6 +41,7 @@ const Cart = () => {
             <p>total da compra: R${totalPrice}</p>
           </div>
           <button onClick={handleClearCart}>limpar carrinho</button>
+          <button onClick={sendOrder}>finalizar compra</button>
         </div>
       ) : (
         <div>
