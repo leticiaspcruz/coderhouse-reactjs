@@ -14,7 +14,9 @@ export const Item = ({ item }) => {
         <Link to={`/product/${item.id}`}>
           Ver detalhe do produto
         </Link>
-        <p>Estoque disponível: {item.stock}</p>
+        {item.stock > 0 
+          ? <p>Estoque disponível: {item.stock}</p> 
+          : <p>esgotado</p>}
       </Container>
   );
 };

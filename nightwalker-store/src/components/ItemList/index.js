@@ -19,11 +19,11 @@ export const ItemList = ({ items, title }) => {
       {items.map((item) => (
            <Content key={item.id}>
             <Item item={item}/>
-            <ItemCount 
+            {item.stock > 0 && <ItemCount 
               stock={item.stock} 
               initial={1} 
               onAdd={() => handleAdd(item)}
-            />
+            />}
            </Content>
           ))}
     </Container>
