@@ -6,13 +6,11 @@ import { Container, Button, Wrapper, ImageWrapper, ProductImage, ProductContaine
 
 export const ItemDetail = ({ item }) => {
   const navigate = useNavigate();
-  const { addToCart, cartItems } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
   const handleAdd = (product, quantity) => {
     addToCart({ ...product, quantity });  
   };
-
-  console.log(cartItems)
 
   return (
     <Container>

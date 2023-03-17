@@ -24,7 +24,6 @@ const Cart = () => {
     }).catch((error) => console.error(error))
   };
 
-
   return (
     <>
     <NavBar />
@@ -33,7 +32,7 @@ const Cart = () => {
         <div>
           {cartItems.map((item) => (
             <div key={item.id}>
-              <span>{item.title}: R${item.price}</span>
+              <span>{item.title}: R${item.price} quantidade: {item.quantity}</span>
               <button onClick={() => handleRemoveItem(item)}>remover</button>
             </div>
           ))}

@@ -7,14 +7,39 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-    setTotalPrice(totalPrice + item.price);
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.id === item.id 
+        ? { ...cartItem, quantity: cartItem.quantity + 1 } 
+        : cartItem
+      );
+  
+      setCartItems(updatedCartItems);
+      setTotalPrice(totalPrice + item.price);
+    } else {
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      setTotalPrice(totalPrice + item.price);
+    }
   };
 
   const removeItem = (item) => {
-    const filteredItems = cartItems.filter((i) => i.id !== item.id);
-    setCartItems(filteredItems);
-    setTotalPrice(totalPrice - item.price);
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+  
+    if (existingItem.quantity === 1) {
+      const filteredItems = cartItems.filter((i) => i.id !== item.id);
+      setCartItems(filteredItems);
+      setTotalPrice(totalPrice - item.price);
+    } else {
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.id === item.id 
+        ? { ...cartItem, quantity: cartItem.quantity - 1 } 
+        : cartItem
+      );
+  
+      setCartItems(updatedCartItems);
+      setTotalPrice(totalPrice - item.price);
+    }
   };
 
   const clearCart = () => {
@@ -28,6 +53,8 @@ export const CartProvider = ({ children }) => {
 
   const totalItems = cartItems.length;
 
+  console.log(cartItems)
+
   const generateOrder = () => {
     return {
       buyer: {
@@ -39,6 +66,7 @@ export const CartProvider = ({ children }) => {
         title: item.title,
         quantity: item.quantity,
         price: item.price,
+        productDetail: item.productDetail,
         id: item.id,
       })),
       date: new Date(),

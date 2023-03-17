@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { ItemDetailContainer, NavBar, Banner } from '../components';
-import { Title } from "./styles";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -10,7 +9,6 @@ const ProductDetail = () => {
     <>
      <NavBar />
      <Banner />
-     <Title>Produto {productId}</Title>
      <ItemDetailContainer product={productId} />
     </>
   );
