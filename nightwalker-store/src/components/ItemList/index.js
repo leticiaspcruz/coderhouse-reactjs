@@ -6,8 +6,6 @@ import { CartContext } from '../../context/CartProvider';
 
 export const ItemList = ({ items, title }) => {
   const { addToCart } = useContext(CartContext);
-
-
   const handleAdd = (product, quantity) => {
     addToCart({ ...product, quantity });  };
 

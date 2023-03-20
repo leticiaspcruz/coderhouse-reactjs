@@ -43,20 +43,23 @@ const ItemsListContainer = ({ categoryName, title }) => {
   }, [categoryName, location.pathname]);
 
 
-  const CategoryItems = () => 
-      (<>
+  const CategoryItems = () => {
+    const uniqueCategories = [...new Set(categories)];
+    return (
+      <>
         <Container>
-        <Title>nossas categorias:</Title>
+          <Title>nossas categorias:</Title>
           <Wrapper>
-            {categories.map((category) => 
+            {uniqueCategories.map((category) => (
               <CategoryLink to={`/category/${category}`}>
                 <Text>{category}</Text>
               </CategoryLink> 
-            )}
+            ))}
           </Wrapper>
-      </Container>
+        </Container>
       </>
-  );  
+    ); 
+  };  
 
   const ListItems = () => {
     if(showCategories) {

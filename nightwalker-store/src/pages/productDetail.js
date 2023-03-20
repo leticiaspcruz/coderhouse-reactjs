@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ItemDetailContainer, NavBar, Banner } from '../components';
+import { ItemDetailContainer, NavBar } from '../components';
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -8,7 +8,6 @@ const ProductDetail = () => {
   return (
     <>
      <NavBar />
-     <Banner />
      <ItemDetailContainer product={productId} />
     </>
   );

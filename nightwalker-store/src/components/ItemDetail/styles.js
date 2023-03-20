@@ -37,6 +37,7 @@ export const ProductDescription = styled.div`
   align-items: center;
   text-align: left;
   margin: 50px;
+  gap: 12px;
 `;
 
 export const Wrapper = styled.div`

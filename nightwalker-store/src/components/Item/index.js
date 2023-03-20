@@ -7,7 +7,7 @@ export const Item = ({ item }) => {
       <Container>
         <h1>{item.title}</h1>
         <ImageWrapper>
-          <ProductImage src={item.pictureUrl} alt={item.imgAlt}/>
+          <ProductImage src={`/images/${item.pictureUrl}`} alt={item.imgAlt}/>
         </ImageWrapper>
         <p>a partir de R${item.price}*</p>
         <p>categoria: {item.category}</p>
@@ -15,8 +15,7 @@ export const Item = ({ item }) => {
           Ver detalhe do produto
         </Link>
         {item.stock > 0 
-          ? <p>Estoque disponível: {item.stock}</p> 
-          : <p>esgotado</p>}
+          ? <p>estoque disponível: {item.stock}</p> : <p>esgotado</p>}
       </Container>
   );
 };
