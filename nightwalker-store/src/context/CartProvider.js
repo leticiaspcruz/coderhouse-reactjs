@@ -50,18 +50,12 @@ export const CartProvider = ({ children }) => {
   const isInCart = (productId) => {
     return cartItems.some((item) => item.id === productId);
   };
-
+  
   const totalItems = cartItems.length;
 
-  console.log(cartItems)
-
-  const generateOrder = () => {
+  const generateOrder = (buyer) => {
     return {
-      buyer: {
-        name: "Leticia",
-        email: "teste@gmail.com",
-        phone: "(11)9999-9999",
-      },
+      buyer,
       item: cartItems.map(item => ({
         title: item.title,
         quantity: item.quantity,

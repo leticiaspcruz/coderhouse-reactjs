@@ -84,6 +84,7 @@ export const CheckoutText = styled.h2`
 export const CheckoutForm = styled.form`
   display: flex;
   flex-direction: column;
+  margin: 0px 20px;
   gap: 10px;
   align-items: center;
   padding: 20px;
@@ -105,17 +106,6 @@ export const CheckoutForm = styled.form`
       &:focus {
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
       }
-    }
-    :hover {
-      color: #c00000;
-      cursor: pointer;
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
-      -webkit-transition: 0.3s ease-in;
-      -moz-transition: 0.3s ease-in;
-      -o-transition: 0.3s ease-in;
-      transition: 0.3s ease-in;
     }
   }
 `;
@@ -142,4 +132,18 @@ export const CheckoutButton = styled.button`
   :hover {
     background: #e74c3c;  
   }
+`;
+
+export const CheckoutContainer = styled.div`
+ :hover {
+      color: #c00000;
+      cursor: pointer;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-transition: 0.3s ease-in;
+      -moz-transition: 0.3s ease-in;
+      -o-transition: 0.3s ease-in;
+      transition: 0.3s ease-in;
+    }
 `;

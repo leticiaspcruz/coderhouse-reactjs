@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavBar } from '../components';
+import { useNavigate } from "react-router-dom";
 import { CartContext } from '../context/CartProvider';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import { Container, InfoContainer, CartButton, CartButtonAlt, CartButtonsWrapper, CheckoutText } from "./styles";
 
 const Cart = () => {
-  const { cartItems, removeItem, clearCart, totalPrice, generateOrder } = useContext(CartContext);
+  const { cartItems, removeItem, clearCart, totalPrice } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleRemoveItem = (item) => {
     removeItem(item);
@@ -14,15 +15,6 @@ const Cart = () => {
 
   const handleClearCart = () => {
     clearCart();
-  };
-
-  const sendOrder = () => {
-    const order = generateOrder();
-    const db = getFirestore();
-    const collectionRef = collection(db, "orders");
-    addDoc(collectionRef, order).then(({ id }) => {
-      alert('compra realizada com sucesso!'); clearCart();
-    }).catch((error) => console.error(error))
   };
 
   return (
@@ -43,7 +35,7 @@ const Cart = () => {
             </div>
             <CartButtonsWrapper>
               <CartButtonAlt onClick={handleClearCart}>limpar carrinho</CartButtonAlt>
-              <CartButtonAlt onClick={sendOrder}>finalizar compra</CartButtonAlt>
+              <CartButtonAlt onClick={() => navigate('/checkout')}>finalizar compra</CartButtonAlt>
             </CartButtonsWrapper>
           </InfoContainer>
         ) : (
