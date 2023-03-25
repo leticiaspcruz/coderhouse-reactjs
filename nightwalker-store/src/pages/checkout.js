@@ -81,6 +81,14 @@ const Checkout = () => {
     getOrderId();
   }, []);
 
+  const notFilled = 
+    !email || 
+    !confirmEmail || 
+    !name || 
+    !surname || 
+    !paymentMethod 
+    || showError;
+
   return (
     <>
      <NavBar />
@@ -154,7 +162,12 @@ const Checkout = () => {
             <p style={{ color: 'black' }}>Os e-mails devem ser iguais</p>
           </div>
           )}
-          <CheckoutButton type="submit">finalizar compra</CheckoutButton>
+          <CheckoutButton type="submit" 
+            disabled={notFilled} 
+            style={notFilled ? { background: 'grey' } : null}
+          >
+            finalizar compra
+          </CheckoutButton>
         </CheckoutForm>) 
         : (
           <CheckoutText>pedido {orderId} gerado com sucesso!</CheckoutText>
