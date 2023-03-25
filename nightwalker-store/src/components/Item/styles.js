@@ -21,3 +21,7 @@ export const ProductImage = styled.img`
   border-radius: 8px;
   object-fit: fill;
 `;
+
+export const SoldOutText = styled.p`
+  color: #C00000;
+`;

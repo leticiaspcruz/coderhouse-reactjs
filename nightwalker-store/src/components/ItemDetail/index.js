@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from '../../context/CartProvider';
 import { ItemCount } from '../ItemCount';
-import { Container, Button, Wrapper, ImageWrapper, ProductImage, ProductContainer, ProductDescription } from './styles';
+import { Container, Button, Wrapper, ImageWrapper, SoldOutText, ProductImage, ProductContainer, ProductDescription } from './styles';
 
 
 export const ItemDetail = ({ item }) => {
@@ -36,7 +36,7 @@ export const ItemDetail = ({ item }) => {
                   finalizar minha compra
                 </Button>
             </>)
-              : <p>esgotado</p>}
+              : <SoldOutText>esgotado</SoldOutText>}
           </ProductDescription>
         </Wrapper>
       </ProductContainer>

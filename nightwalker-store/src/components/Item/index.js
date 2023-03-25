@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { Container, ImageWrapper, ProductImage } from './styles';
+import { Container, ImageWrapper, ProductImage, SoldOutText } from './styles';
 
 export const Item = ({ item }) => {
   return (
@@ -15,7 +15,7 @@ export const Item = ({ item }) => {
           Ver detalhe do produto
         </Link>
         {item.stock > 0 
-          ? <p>estoque disponível: {item.stock}</p> : <p>esgotado</p>}
+          ? <p>estoque disponível: {item.stock}</p> : <SoldOutText>esgotado</SoldOutText>}
       </Container>
   );
 };

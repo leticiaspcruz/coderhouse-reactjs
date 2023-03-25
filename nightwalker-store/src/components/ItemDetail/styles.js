@@ -73,3 +73,7 @@ export const Button = styled.button`
     background: #e74c3c;  
   }
 `;
+
+export const SoldOutText = styled.p`
+  color: #C00000;
+`;
