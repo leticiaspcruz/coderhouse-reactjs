@@ -164,7 +164,6 @@ const Checkout = () => {
           )}
           <CheckoutButton type="submit" 
             disabled={notFilled} 
-            style={notFilled ? { background: 'grey' } : null}
           >
             finalizar compra
           </CheckoutButton>
