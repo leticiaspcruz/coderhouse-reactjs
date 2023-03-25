@@ -10,7 +10,14 @@ const ItemsListContainer = ({ categoryName, title }) => {
   const [showCategories, setShowCategories] = useState(false);
   const location = useLocation();
 
-
+  function chunk(array, size) {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunkedArray.push(array.slice(i, i + size));
+    }
+    return chunkedArray;
+  }
+  
   const getItemsFromFireStore = () => {
     getDocs(collection(getFirestore(), "items"))
     .then((querySnapshot) => {
@@ -62,11 +69,19 @@ const ItemsListContainer = ({ categoryName, title }) => {
   };  
 
   const ListItems = () => {
-    if(showCategories) {
-      return <CategoryItems />
-    } 
-    else {
-      return <ItemList items={productData} title={title}/>
+    if (showCategories) {
+      return <CategoryItems />;
+    } else {
+      const chunkedData = chunk(productData, 3);
+      return (
+        <>
+          {chunkedData.map((chunk, index) => (
+            <div key={index}>
+              <ItemList items={chunk} title={title} />
+            </div>
+          ))}
+        </>
+      );
     }
   };
 
