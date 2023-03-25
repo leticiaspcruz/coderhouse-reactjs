@@ -96,9 +96,10 @@ export const CheckoutForm = styled.form`
     flex-direction: column;
     margin-bottom: 10px;
     width: 100%;
-    input {
+    input, select {
       padding: 10px;
       border: none;
+      color: black;
       border-radius: 5px;
       margin-top: 5px;
       font-size: 16px;

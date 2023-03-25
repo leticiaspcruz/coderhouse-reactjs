@@ -51,8 +51,10 @@ export const CartProvider = ({ children }) => {
     return cartItems.some((item) => item.id === productId);
   };
   
-  const totalItems = cartItems.length;
-
+  const totalItems = cartItems.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
+  
   const generateOrder = (buyer) => {
     return {
       buyer,

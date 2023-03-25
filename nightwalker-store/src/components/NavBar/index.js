@@ -48,7 +48,7 @@ const NavBar = () => {
           >
             {item.text}
             {item.icon}
-            {item.total}
+            . {item.total}
           </NavItem>))}
         </NavMenu>
       </Nav>

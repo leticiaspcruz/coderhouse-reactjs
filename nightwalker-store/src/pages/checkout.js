@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavBar } from '../components';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { getFirestore, query, getDocs, addDoc, collection } from 'firebase/firestore';
 import { Container, CheckoutText, CheckoutForm, CheckoutButton, CheckoutContainer } from './styles';
 import { CartContext } from '../context/CartProvider';
 
@@ -9,28 +9,48 @@ const Checkout = () => {
   const [surname, setSurname] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [showError, setShowError] = useState(false);
+  const [orderId, setOrderId] = useState('');
   const [successMessage, setSuccessMessage] = useState(false);
   const { clearCart, generateOrder } = useContext(CartContext);
 
-
   useEffect(() => {
-    if(email !== confirmEmail && confirmEmail !== '') setShowError(true);
+    if(email !== confirmEmail) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+    }
   }, [email, confirmEmail]);
+
+  const handlePaymentMethodChange = (event) => {
+    setPaymentMethod(event.target.value);
+  };
+
+  const formatPhone = (phone) => {
+    const cleaned = ('' + phone).replace(/\D/g, '');
+    const match = cleaned.match(/^(\d{2})(\d{4,5})(\d{4})$/);
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return phone;
+  }
 
   const buyer = {
     name: name, 
     surname: surname, 
-    phone: phone, 
-    email: email
+    phone: formatPhone(phone), 
+    email: email,
+    paymentMethod: paymentMethod,
   };
+  const order = generateOrder(buyer);
+  const db = getFirestore();
+  const collectionRef = collection(db, "orders");
 
   const sendOrder = () => {
-    const order = generateOrder(buyer);
-    const db = getFirestore();
-    const collectionRef = collection(db, "orders");
     addDoc(collectionRef, order).then(({ id }) => {
+      console.log(id)
       setSuccessMessage(true);
       clearCart();
     }).catch((error) => console.error(error))
@@ -40,6 +60,26 @@ const Checkout = () => {
     event.preventDefault();
     sendOrder();
   };
+
+  const getOrderId = () => {
+    getDocs(query(collection(getFirestore(), "orders")
+      .where("buyer.email", "==", email)))
+      .then((querySnapshot) => {
+        querySnapshot.forEach((order) => {
+          const orderData = order.id; 
+          return orderData
+        })
+      })
+      .then(id => {
+        setOrderId(id);
+      })
+      .catch((error) => console.error(error))
+  };
+
+  useEffect(() => {
+    if(!email) return;
+    getOrderId();
+  }, []);
 
   return (
     <>
@@ -74,6 +114,7 @@ const Checkout = () => {
               type="text" 
               placeholder="telefone (11) 99999-9999"
               value={phone} 
+              maxLength={15}
               onChange={(e) => setPhone(e.target.value)} 
             />
           </label>
@@ -96,15 +137,27 @@ const Checkout = () => {
               onChange={(e) => setConfirmEmail(e.target.value)}
             />
           </label>
+          <label htmlFor="payment-method">forma de pagamento:
+            <select
+              id="payment-method"
+              name="payment-method"
+              value={paymentMethod}
+              onChange={handlePaymentMethodChange}
+            >
+              <option value="credit-card">cartão de crédito</option>
+              <option value="debit-card">cartão de débito</option>
+              <option value="bank-transfer">pix</option>
+            </select>
+          </label>
           {showError && (
           <div>
             <p style={{ color: 'black' }}>Os e-mails devem ser iguais</p>
           </div>
           )}
-          <CheckoutButton type="submit">enviar</CheckoutButton>
+          <CheckoutButton type="submit">finalizar compra</CheckoutButton>
         </CheckoutForm>) 
         : (
-          <CheckoutText>pedido gerado com sucesso!</CheckoutText>
+          <CheckoutText>pedido {orderId} gerado com sucesso!</CheckoutText>
         )}
       </CheckoutContainer>
      </Container>
