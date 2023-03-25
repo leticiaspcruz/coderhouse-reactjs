@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { NavBar } from '../components';
 import { CartContext } from '../context/CartProvider';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { Container, InfoContainer, CartButton, CartButtonAlt, CartButtonsWrapper, CheckoutText } from "./styles";
 
 const Cart = () => {
   const { cartItems, removeItem, clearCart, totalPrice, generateOrder } = useContext(CartContext);
@@ -27,29 +28,33 @@ const Cart = () => {
   return (
     <>
     <NavBar />
+     <Container>
       <h1>carrinho</h1>
-      {cartItems.length > 0 ? (
-        <div>
-          {cartItems.map((item) => (
-            <div key={item.id}>
-              <span>{item.title}: R${item.price} quantidade: {item.quantity}</span>
-              <button onClick={() => handleRemoveItem(item)}>remover</button>
+        {cartItems.length > 0 ? (
+          <InfoContainer>
+            {cartItems.map((item) => (
+              <div key={item.id}>
+                <span>{item.title}: R${item.price} | Qtd: {item.quantity}</span>
+                <CartButton onClick={() => handleRemoveItem(item)}>remover</CartButton>
+              </div>
+            ))}
+            <div>
+              <CheckoutText>total da compra: R${totalPrice}</CheckoutText>
             </div>
-          ))}
+            <CartButtonsWrapper>
+              <CartButtonAlt onClick={handleClearCart}>limpar carrinho</CartButtonAlt>
+              <CartButtonAlt onClick={sendOrder}>finalizar compra</CartButtonAlt>
+            </CartButtonsWrapper>
+          </InfoContainer>
+        ) : (
           <div>
-            <p>total da compra: R${totalPrice}</p>
+            <p>carrinho vazio</p>
+            <Link to='/'>
+              retornar para página inicial
+            </Link>
           </div>
-          <button onClick={handleClearCart}>limpar carrinho</button>
-          <button onClick={sendOrder}>finalizar compra</button>
-        </div>
-      ) : (
-        <div>
-          <p>carrinho vazio</p>
-          <Link to='/'>
-            retornar para página inicial
-          </Link>
-        </div>
-      )}
+        )}
+     </Container>
     </>
   );
 };
