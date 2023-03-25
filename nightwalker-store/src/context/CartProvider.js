@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
       setTotalPrice(totalPrice + item.price);
     }
-    localStorage.setItem('cartItems', cartItems);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   };
 
   const removeItem = (item) => {
